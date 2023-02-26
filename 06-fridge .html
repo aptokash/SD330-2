@@ -1,0 +1,176 @@
+	<!DOCTYPE html>
+	<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<style>
+			body 			{background-color: brown; color:white}
+			.veryImportant  {font-size: 40px; text-decoration: underline;} 
+			.floatRight 	{float:right; width:50%;
+							 border: 4px solid black; padding 5px 5px 5px 5px;
+							 margin: 5px 5px 5px 5px; 
+							 } 
+		
+						
+			#main	{width:50%;  
+					 border:solid black; align: center;
+					 margin-left: auto;	margin-right: auto;
+					 padding: 2px 2px 2px 2px; 
+					 color: black; background-color: green;
+					 font-family: arial;}
+					 
+			.windows {width:30%;  
+					 border:solid black; align: center;
+					 margin-left: auto;	margin-right: auto;
+					 padding: 2px 2px 2px 2px; 
+					 color: black; background-color: white;
+					 font-family: arial;}		
+			.floatLeft	{float:left;}	
+					 
+		</style>
+		
+		
+		<title>My Fridge </title>
+	</head>
+	<body onload="doStart()">
+		<h1>My Fridge App </h1>
+
+		<!-- ----------------------------------------------------------------------------------- -->
+		
+	<div id="main">
+			
+			
+		    <p> <input type=button id="onOff"   	onclick="onoff()" 	   value="Off">  
+				<input type=button id="clock" value="">
+				<input type=button id="temp"        onclick="changeTemp()" value="39 Degrees Fahrenheit" >
+			
+			</p>
+			<p> <input type=button id="lookInOut"   onclick="lookInOut()"  value="Open"> 
+				<input type=button id="webOnOff"    onclick="webOnOff()"   value="Web"> </p>  
+		    
+			
+			
+			<p> <img  id="lookIn" > <img  id="web" > 
+			
+			 
+			
+		
+			
+		
+		
+	</div>
+		
+		
+		    
+	<script>
+
+	/* --------------------------------------------------------- */ 	
+		function doStart(){
+			setInterval(doClockTick,1000);
+		}
+		
+		
+		
+		
+		
+		
+		
+		function onoff(){
+			var button  = document.getElementById("onOff");
+			var main    = document.getElementById("main");
+				
+			if (button.value == "On") {
+				button.value = "Off";
+				main.style.backgroundColor = "green";
+				
+				document.getElementById("webOnOff").style.display='block';
+				document.getElementById("lookInOut").style.display='block';
+				document.getElementById("temp").style.display='block';
+				
+			}	
+			else { 
+				button.value = "On";
+				main.style.backgroundColor = "white";
+				
+				document.getElementById("webOnOff").style.display='none';
+				document.getElementById("lookInOut").style.display='none';
+				document.getElementById("temp").style.display='none';
+			}	
+		}
+	 
+	 
+	/* ----------------------------------------------------------- */ 
+		function lookInOut(){
+			var img  	 = document.getElementById("lookIn");
+			var button   = document.getElementById("lookInOut");
+			
+			if (button.value == "Open"){ 
+				img.src      = "06-fridge.jpg";
+				img.className = "windows";
+				button.value = "Close";
+			}	
+			else { 
+				img.src      = "";
+				img.className = "";
+				button.value = "Open";
+			}	
+		}
+
+
+   /* ----------------------------------------------------------- */ 
+		function webOnOff(){
+			var img  	 = document.getElementById("web");
+			var button   = document.getElementById("webOnOff");
+			
+			if (button.value == "Web"){ 
+				img.src      = "06-web.jpg";
+				img.className = "windows";
+				button.value = "Close Web";
+			}	
+			else { 
+				img.src      = "";
+				img.className = "";
+				button.value = "Web";
+			}	
+		}
+
+	
+		
+		function doClockTick(){
+			var currentDate = new Date();
+			var hours = currentDate.getHours();
+			if (hours > 12) { hours =  hours - 12;}
+			var minutes = currentDate.getMinutes();
+			var seconds  = currentDate.getSeconds(); 
+			var myTime = hours + ":" + minutes + ":" + seconds;
+		
+			var clock	 = document.getElementById("clock");
+			clock.value  = myTime;
+		
+		}
+	 
+	/* ----------------------------------------------------------- */ 
+		function changeTemp(){
+			
+			var temp  	 = document.getElementById("temp");
+			
+			if (temp.value.indexOf("39")> -1) {
+			    temp.value = "12 Degrees Celcius";	
+			}
+			else {
+			    temp.value = "39 Degrees Fahrenhiet";	
+			}	
+		}
+
+
+
+
+
+	
+	</script>
+	
+	<footer>
+		<hr>
+		(c) A. Tokash
+	</footer>
+	</body>
+	</html>
